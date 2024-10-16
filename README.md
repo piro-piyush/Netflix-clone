@@ -6,7 +6,7 @@ A new Flutter project.
 
 This project is a starting point for a Flutter 
 
-- [Lab: Write your first Flutter app](https://cs.flutter.dev/get-started/codela
+- [Lab: Write your first Flutter app](https://cs.flutter.dev/get-started/code
 - [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
 
 For help getting started with Flutter development, view the
