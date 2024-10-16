@@ -88,7 +88,7 @@ Include screenshots or GIFs of your project here.
 
 Explain the structure of your project:
 
-\`\`\`
+```bash
 ├── lib/
 │   ├── screens/           # UI Screens like Home, Movie Details, etc.
 │   ├── widgets/           # Custom UI components
@@ -96,7 +96,7 @@ Explain the structure of your project:
 │   ├── models/            # Data models (Movies, Users)
 │   ├── utils/             # Utility classes and constants
 │   └── main.dart          # Main entry point of the app
-\`\`\`
+```
 
 ## Firebase Configuration
 
