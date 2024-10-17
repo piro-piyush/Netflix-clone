@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'screens/splash_screen.dart';
 
 void main() {
@@ -15,8 +16,14 @@ class MyApp extends StatelessWidget {
       themeMode: ThemeMode.dark,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple).copyWith(surface: Colors.black),
+        textTheme: TextTheme(
+          bodyLarge: TextStyle(color: Colors.white,fontSize: 24),
+          bodyMedium: TextStyle(color: Colors.white, fontSize: 20),
+        ),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple)
+            .copyWith(surface: Colors.black),
         useMaterial3: true,
+        fontFamily: GoogleFonts.ptSans().fontFamily
       ),
       home: SplashScreen(),
     );
