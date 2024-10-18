@@ -64,20 +64,14 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             SizedBox(
               height: 220,
-              child: MovieCardWidget(
-                future: nowPlayingFuture,
-                headLineText: 'Now Playing',
-              ),
+              child: MovieCardWidget(future: upcomingFuture, headLineText: 'Now Playing',)
             ),
             const SizedBox(
               height: 20,
             ),
             SizedBox(
               height: 220,
-              child: MovieCardWidget(
-                future: upcomingFuture,
-                headLineText: 'Upcoming Movies',
-              ),
+              child: MovieCardWidget(future: upcomingFuture, headLineText: 'Upcoming Movies',),
             ),
           ],
         ));

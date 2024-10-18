@@ -2,7 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
-
 import '../models/upcoming_movie_model.dart';
 
 class MovieCardWidget extends StatefulWidget {
@@ -16,6 +15,13 @@ class MovieCardWidget extends StatefulWidget {
 }
 
 class _MovieCardWidgetState extends State<MovieCardWidget> {
+  @override
+  void initState() {
+    super.initState();
+    // Log the headline text to check if it's being passed
+    log("Headline Text: ${widget.headLineText}");
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(future: widget.future, builder: (context, snapshot){
@@ -31,8 +37,11 @@ class _MovieCardWidgetState extends State<MovieCardWidget> {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.headLineText,style: TextStyle(fontWeight: FontWeight.bold),),
-            SizedBox(height: 10,),
+            Padding(
+              padding: EdgeInsets.only(left: 10),
+              child: Text(widget.headLineText,style: TextStyle(fontWeight: FontWeight.bold),),
+            ),
+            SizedBox(height: 5,),
             Expanded(
               child: ListView.builder(
                   shrinkWrap: true,
