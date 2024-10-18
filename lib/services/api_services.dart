@@ -17,6 +17,7 @@ class ApiServices {
     final response  = await http.get(Uri.parse(url));
     if(response.statusCode == 200){
       log("Success");
+      log("Fetching Upcoming Movies: ${response.statusCode} - ${response.body}");
       return UpcomingMovieModal.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load upcoming movies");
@@ -29,6 +30,7 @@ class ApiServices {
     final response  = await http.get(Uri.parse(url));
     if(response.statusCode == 200){
       log("Success");
+      log("Fetching Now Playing Movies: ${response.statusCode} - ${response.body}");
       return UpcomingMovieModal.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load Now Playing movies");
