@@ -36,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SizedBox(width: 20,)
         ],
-        centerTitle: true,
+        // centerTitle: true,
       ),
       body: Center(child: Text("Home Screen",style: TextStyle(color: Colors.white),),),
     );
