@@ -1,8 +1,10 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
 
 import '../models/upcoming_movie_model.dart';
-  
+
 class MovieCardWidget extends StatefulWidget {
   final Future<UpcomingMovieModal> future;
   final String headLineText;
@@ -17,9 +19,17 @@ class _MovieCardWidgetState extends State<MovieCardWidget> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(future: widget.future, builder: (context, snapshot){
-      if(snapshot.hasData){
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return const Center(child: CircularProgressIndicator()); // Display a loading indicator while waiting
+      } else if (snapshot.hasError) {
+        return Center(child: Text('Error: ${snapshot.error}')); // Handle errors
+      } else if(snapshot.hasData){
         var data = snapshot.data?.results;
+
+        log("${widget.headLineText} Data Loaded: ${data?.length}");
+
         return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(widget.headLineText,style: TextStyle(fontWeight: FontWeight.bold),),
             SizedBox(height: 10,),
