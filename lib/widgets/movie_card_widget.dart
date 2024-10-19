@@ -1,5 +1,4 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
 import '../models/upcoming_movie_model.dart';
@@ -18,7 +17,6 @@ class _MovieCardWidgetState extends State<MovieCardWidget> {
   @override
   void initState() {
     super.initState();
-    // Log the headline text to check if it's being passed
     log("Headline Text: ${widget.headLineText}");
   }
 

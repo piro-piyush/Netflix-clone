@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ApiServices apiServices = ApiServices();
-
   late Future<UpcomingMovieModal> upcomingFuture;
   late Future<UpcomingMovieModal> nowPlayingFuture;
 
@@ -64,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             SizedBox(
               height: 220,
-              child: MovieCardWidget(future: upcomingFuture, headLineText: 'Now Playing',)
+              child: MovieCardWidget(future: nowPlayingFuture, headLineText: 'Now Playing',)
             ),
             const SizedBox(
               height: 20,
