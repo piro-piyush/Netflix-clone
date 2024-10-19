@@ -38,25 +38,25 @@ Ensure that you have the following installed:
 ### Installation
 
 1. Clone the repository:
-   \`\`\`bash
+  ```bash
    git clone https://github.com/yourusername/netflix-clone.git
-   \`\`\`
+   ```
 2. Navigate to the project directory:
-   \`\`\`bash
+   ```bash
    cd netflix-clone
-   \`\`\`
+   ```
 
 3. Install the necessary dependencies:
 
    For **Flutter**:
-   \`\`\`bash
+   ```bash
    flutter pub get
-   \`\`\`
+   ```
 
    For **React**:
-   \`\`\`bash
+   ```bash
    npm install
-   \`\`\`
+   ```
 
 4. Setup Firebase:
 
