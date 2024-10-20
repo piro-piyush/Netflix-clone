@@ -58,7 +58,13 @@ class _SearchScreenState extends State<SearchScreen> {
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:3, mainAxisSpacing: 15, crossAxisSpacing: 5, childAspectRatio:1.2/2),
                   itemBuilder: (context,index){
                     return Column(children: [
-                      CachedNetworkImage(imageUrl: "$imageUrl${searchModel!.results[index].backdropPath },",height: 170,)
+                      CachedNetworkImage(imageUrl: "$imageUrl${searchModel!.results[index].backdropPath },",height: 170,),
+                      SizedBox(
+                        width:100,
+                        child: Text(searchModel!.results[index].originalTitle,style: TextStyle(
+                          fontSize: 14
+                        ),maxLines: 2,overflow: TextOverflow.ellipsis,),
+                      )
                     ],
                     );
                   })
