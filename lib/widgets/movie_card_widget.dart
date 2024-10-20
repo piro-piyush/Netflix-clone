@@ -6,7 +6,7 @@ import '../common/utils.dart';
 import '../models/upcoming_movie_model.dart';
 
 class MovieCardWidget extends StatelessWidget {
-  final Future<UpcomingMovieModal> future;
+  final Future<UpcomingMovieModel> future;
 
   final String headLineText;
   const MovieCardWidget({
@@ -17,7 +17,7 @@ class MovieCardWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<UpcomingMovieModal>(
+    return FutureBuilder<UpcomingMovieModel>(
         future: future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

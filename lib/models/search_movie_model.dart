@@ -1,26 +1,23 @@
 import 'dart:convert';
 
-UpcomingMovieModel upcomingMovieModelFromJson(String str) => UpcomingMovieModel.fromJson(json.decode(str));
+SearchedMovieModel searchedMovieModalFromJson(String str) => SearchedMovieModel.fromJson(json.decode(str));
 
-String upcomingMovieModelToJson(UpcomingMovieModel data) => json.encode(data.toJson());
+String searchedMovieModalToJson(SearchedMovieModel data) => json.encode(data.toJson());
 
-class UpcomingMovieModel {
-  Dates dates;
+class SearchedMovieModel {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  UpcomingMovieModel({
-    required this.dates,
+  SearchedMovieModel({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory UpcomingMovieModel.fromJson(Map<String, dynamic> json) => UpcomingMovieModel(
-    dates: Dates.fromJson(json["dates"]),
+  factory SearchedMovieModel.fromJson(Map<String, dynamic> json) => SearchedMovieModel(
     page: json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],
@@ -28,7 +25,6 @@ class UpcomingMovieModel {
   );
 
   Map<String, dynamic> toJson() => {
-    "dates": dates.toJson(),
     "page": page,
     "results": List<dynamic>.from(results.map((x) => x.toJson())),
     "total_pages": totalPages,
@@ -36,37 +32,17 @@ class UpcomingMovieModel {
   };
 }
 
-class Dates {
-  DateTime maximum;
-  DateTime minimum;
-
-  Dates({
-    required this.maximum,
-    required this.minimum,
-  });
-
-  factory Dates.fromJson(Map<String, dynamic> json) => Dates(
-    maximum: DateTime.parse(json["maximum"]),
-    minimum: DateTime.parse(json["minimum"]),
-  );
-
-  Map<String, dynamic> toJson() => {
-    "maximum": "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
-    "minimum": "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
-  };
-}
-
 class Result {
   bool adult;
-  String backdropPath;
+  String? backdropPath;
   List<int> genreIds;
   int id;
-  OriginalLanguage originalLanguage;
+  String originalLanguage;
   String originalTitle;
   String overview;
   double popularity;
-  String posterPath;
-  DateTime releaseDate;
+  String? posterPath;
+  String releaseDate;
   String title;
   bool video;
   double voteAverage;
@@ -94,12 +70,12 @@ class Result {
     backdropPath: json["backdrop_path"],
     genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
-    originalLanguage: originalLanguageValues.map[json["original_language"]]!,
+    originalLanguage: json["original_language"],
     originalTitle: json["original_title"],
     overview: json["overview"],
     popularity: json["popularity"]?.toDouble(),
     posterPath: json["poster_path"],
-    releaseDate: DateTime.parse(json["release_date"]),
+    releaseDate: json["release_date"],
     title: json["title"],
     video: json["video"],
     voteAverage: json["vote_average"]?.toDouble(),
@@ -111,41 +87,15 @@ class Result {
     "backdrop_path": backdropPath,
     "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "id": id,
-    "original_language": originalLanguageValues.reverse[originalLanguage],
+    "original_language": originalLanguage,
     "original_title": originalTitle,
     "overview": overview,
     "popularity": popularity,
     "poster_path": posterPath,
-    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "release_date": releaseDate,
     "title": title,
     "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
-}
-
-enum OriginalLanguage {
-  CN,
-  EN,
-  XX,
-  ZH
-}
-
-final originalLanguageValues = EnumValues({
-  "cn": OriginalLanguage.CN,
-  "en": OriginalLanguage.EN,
-  "xx": OriginalLanguage.XX,
-  "zh": OriginalLanguage.ZH
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

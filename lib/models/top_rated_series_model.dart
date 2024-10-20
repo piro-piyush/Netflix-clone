@@ -1,23 +1,23 @@
 import 'dart:convert';
 
-TopRatedSeriesModal topRatedSeriesModalFromJson(String str) => TopRatedSeriesModal.fromJson(json.decode(str));
+TopRatedSeriesModel topRatedSeriesModelFromJson(String str) => TopRatedSeriesModel.fromJson(json.decode(str));
 
-String topRatedSeriesModalToJson(TopRatedSeriesModal data) => json.encode(data.toJson());
+String topRatedSeriesModelToJson(TopRatedSeriesModel data) => json.encode(data.toJson());
 
-class TopRatedSeriesModal {
+class TopRatedSeriesModel {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  TopRatedSeriesModal({
+  TopRatedSeriesModel({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory TopRatedSeriesModal.fromJson(Map<String, dynamic> json) => TopRatedSeriesModal(
+  factory TopRatedSeriesModel.fromJson(Map<String, dynamic> json) => TopRatedSeriesModel(
     page: json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],

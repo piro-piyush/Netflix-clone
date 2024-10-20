@@ -16,9 +16,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   ApiServices apiServices = ApiServices();
-  late Future<UpcomingMovieModal> upcomingFuture;
-  late Future<UpcomingMovieModal> nowPlayingFuture;
-  late Future<TopRatedSeriesModal> topRatedSeries;
+  late Future<UpcomingMovieModel> upcomingFuture;
+  late Future<UpcomingMovieModel> nowPlayingFuture;
+  late Future<TopRatedSeriesModel> topRatedSeries;
 
   @override
   void initState() {

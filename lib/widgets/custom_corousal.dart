@@ -6,7 +6,7 @@ import '../common/utils.dart';
 import '../models/top_rated_series_model.dart';
 
 class CustomCorousalSlider extends StatelessWidget {
-  final TopRatedSeriesModal data;
+  final TopRatedSeriesModel data;
   const CustomCorousalSlider({super.key, required this.data});
 
   @override
