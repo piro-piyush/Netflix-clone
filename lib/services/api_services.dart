@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:developer';
 
 import 'package:netflix_clone/common/utils.dart';
+import 'package:netflix_clone/models/top_rated_series_model.dart';
 import 'package:netflix_clone/models/upcoming_movie_model.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,5 +35,18 @@ class ApiServices {
       return UpcomingMovieModal.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load Now Playing movies");
+  }
+
+  Future<TopRatedSeriesModal> getTopRatedSeries() async {
+    endPoint = "tv/top_rated";
+    final url = "$baseUrl$endPoint$key";
+
+    final response  = await http.get(Uri.parse(url));
+    if(response.statusCode == 200){
+      log("Success");
+      log("Fetching Now Playing Movies: ${response.statusCode} - ${response.body}");
+      return TopRatedSeriesModal.fromJson(jsonDecode(response.body));
+    }
+    throw Exception("Failed to load Top rated series");
   }
 }
