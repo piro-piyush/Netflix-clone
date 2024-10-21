@@ -29,7 +29,7 @@ class _MovieDetailsScreenState extends State<MovieDetailsScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    log("Hey movie id is : $widget.movieId");
+    log("Hey, movie id is: ${widget.movieId}");
 
     return Scaffold(
       body: Column(
