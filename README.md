@@ -71,14 +71,14 @@ Ensure that you have the following installed:
 6. Run the project:
 
    For **Flutter**:
-   \`\`\`bash
+   ```bash
    flutter run
-   \`\`\`
+   ```
 
    For **React**:
-   \`\`\`bash
+   ```bash
    npm start
-   \`\`\`
+   ```
 
 ## Screenshots
 
