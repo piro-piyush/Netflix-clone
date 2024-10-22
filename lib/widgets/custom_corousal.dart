@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../common/utils.dart';
 import '../models/top_rated_series_model.dart';
+import '../screens/movie_details_screen.dart';
 
 class CustomCorousalSlider extends StatelessWidget {
   final TopRatedSeriesModel data;
@@ -22,12 +23,24 @@ class CustomCorousalSlider extends StatelessWidget {
 
         return GestureDetector(
             onTap:(){},
-            child: Column(
-              children: [
-                CachedNetworkImage(imageUrl: "$imageUrl$url",),
-                SizedBox(height: 20,),
-                Text(data.results[index].name)
-              ],
+            child: GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => MovieDetailsScreen(
+                      movieId: data.results[index].id,
+                    ),
+                  ),
+                );
+              },
+              child: Column(
+                children: [
+                  CachedNetworkImage(imageUrl: "$imageUrl$url",),
+                  SizedBox(height: 20,),
+                  Text(data.results[index].name)
+                ],
+              ),
             ));
       },options: CarouselOptions(
         height: (size.height * 0.33<300)? 300 : size.height * 0.33,

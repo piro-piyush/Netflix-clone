@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/screens/movie_details_screen.dart';
 
 import '../common/utils.dart';
 import '../models/upcoming_movie_model.dart';
@@ -50,14 +51,14 @@ class MovieCardWidget extends StatelessWidget {
                             padding: const EdgeInsets.all(5.0),
                             child: InkWell(
                               onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) => MovieDetailScreen(
-                                //       movieId: data[index].id,
-                                //     ),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MovieDetailsScreen(
+                                      movieId: data[index].id,
+                                    ),
+                                  ),
+                                );
                               },
                               child: Container(
                                 decoration: BoxDecoration(
