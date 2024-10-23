@@ -59,13 +59,10 @@ class MovieDetailsScreenState extends State<MovieDetailsScreen> {
                       Container(
                         height: size.height * 0.4,
                         decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: movie.posterPath == null
-                                ? const AssetImage("assets/netflix.png")
-                                : NetworkImage("$imageUrl${movie.posterPath}") as ImageProvider,
-                            fit: BoxFit.cover,
-                          ),
-                        ),
+                            image: DecorationImage(
+                                image: NetworkImage(
+                                    "$imageUrl${movie.posterPath}"),
+                                fit: BoxFit.cover)),
                         child: SafeArea(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
