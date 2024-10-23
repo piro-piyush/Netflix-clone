@@ -3,8 +3,10 @@ import 'package:netflix_clone/common/utils.dart';
 import 'package:netflix_clone/models/top_rated_series_model.dart';
 import 'package:netflix_clone/models/upcoming_movie_model.dart';
 import 'package:netflix_clone/services/api_services.dart';
-import 'package:netflix_clone/widgets/movie_card_widget.dart';
+import 'package:netflix_clone/widgets/now_playing_widget.dart';
+import 'package:netflix_clone/widgets/upcoming_movie_card_widget.dart';
 
+import '../models/now_playing_model.dart';
 import '../widgets/custom_corousal.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   ApiServices apiServices = ApiServices();
   late Future<UpcomingMovieModel> upcomingFuture;
-  late Future<UpcomingMovieModel> nowPlayingFuture;
+  late Future<NowPlayingModel> nowPlayingFuture;
   late Future<TopRatedMoviesModel> topRatedSeries;
 
   @override
@@ -68,7 +70,13 @@ class _HomeScreenState extends State<HomeScreen> {
             children: [
               FutureBuilder(future: topRatedSeries, builder: (context,snapshot){
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(child: CircularProgressIndicator());
+                  return SizedBox(
+                    height: MediaQuery.of(context).size.height,  // Ensure full height
+                    width: MediaQuery.of(context).size.width,    // Ensure full width
+                    child: const Center(
+                      child: CircularProgressIndicator(color: Colors.red,),
+                    ),
+                  );
                 } else if (snapshot.hasError) {
                   return Center(child: Text('Error: ${snapshot.error}'));
                 } else if(snapshot.hasData) {
@@ -79,14 +87,14 @@ class _HomeScreenState extends State<HomeScreen> {
               }),
               SizedBox(
                 height: 220,
-                child: MovieCardWidget(future: nowPlayingFuture, headLineText: "Now Playing",)
+                child: NowPlayingWidget(future: nowPlayingFuture, headLineText: "Now Playing",)
               ),
               const SizedBox(
                 height: 20,
               ),
               SizedBox(
                 height: 220,
-                child: MovieCardWidget(future: upcomingFuture, headLineText: "Upcoming Movies",),
+                child: UpcomingMovieCardWidget(future: upcomingFuture, headLineText: "Upcoming Movies",),
               ),
             ],
           ),

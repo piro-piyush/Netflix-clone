@@ -1,23 +1,26 @@
 import 'dart:convert';
 
-RecommendationModel recommendationModelFromJson(String str) => RecommendationModel.fromJson(json.decode(str));
+NowPlayingModel nowPlayingModelFromJson(String str) => NowPlayingModel.fromJson(json.decode(str));
 
-String recommendationModelToJson(RecommendationModel data) => json.encode(data.toJson());
+String nowPlayingModelToJson(NowPlayingModel data) => json.encode(data.toJson());
 
-class RecommendationModel {
+class NowPlayingModel {
+  Dates dates;
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  RecommendationModel({
+  NowPlayingModel({
+    required this.dates,
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory RecommendationModel.fromJson(Map<String, dynamic> json) => RecommendationModel(
+  factory NowPlayingModel.fromJson(Map<String, dynamic> json) => NowPlayingModel(
+    dates: Dates.fromJson(json["dates"]),
     page: json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],
@@ -25,6 +28,7 @@ class RecommendationModel {
   );
 
   Map<String, dynamic> toJson() => {
+    "dates": dates.toJson(),
     "page": page,
     "results": List<dynamic>.from(results.map((x) => x.toJson())),
     "total_pages": totalPages,
@@ -32,84 +36,106 @@ class RecommendationModel {
   };
 }
 
+class Dates {
+  DateTime maximum;
+  DateTime minimum;
+
+  Dates({
+    required this.maximum,
+    required this.minimum,
+  });
+
+  factory Dates.fromJson(Map<String, dynamic> json) => Dates(
+    maximum: DateTime.parse(json["maximum"]),
+    minimum: DateTime.parse(json["minimum"]),
+  );
+
+  Map<String, dynamic> toJson() => {
+    "maximum": "${maximum.year.toString().padLeft(4, '0')}-${maximum.month.toString().padLeft(2, '0')}-${maximum.day.toString().padLeft(2, '0')}",
+    "minimum": "${minimum.year.toString().padLeft(4, '0')}-${minimum.month.toString().padLeft(2, '0')}-${minimum.day.toString().padLeft(2, '0')}",
+  };
+}
+
 class Result {
+  bool adult;
   String? backdropPath;
+  List<int> genreIds;
   int id;
-  String title;
+  OriginalLanguage originalLanguage;
   String originalTitle;
   String overview;
-  String posterPath;
-  MediaType mediaType;
-  bool adult;
-  String originalLanguage;
-  List<int> genreIds;
   double popularity;
+  String posterPath;
   DateTime releaseDate;
+  String title;
   bool video;
   double voteAverage;
   int voteCount;
 
   Result({
+    required this.adult,
     required this.backdropPath,
+    required this.genreIds,
     required this.id,
-    required this.title,
+    required this.originalLanguage,
     required this.originalTitle,
     required this.overview,
-    required this.posterPath,
-    required this.mediaType,
-    required this.adult,
-    required this.originalLanguage,
-    required this.genreIds,
     required this.popularity,
+    required this.posterPath,
     required this.releaseDate,
+    required this.title,
     required this.video,
     required this.voteAverage,
     required this.voteCount,
   });
 
   factory Result.fromJson(Map<String, dynamic> json) => Result(
+    adult: json["adult"],
     backdropPath: json["backdrop_path"],
+    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
-    title: json["title"],
+    originalLanguage: originalLanguageValues.map[json["original_language"]]!,
     originalTitle: json["original_title"],
     overview: json["overview"],
-    posterPath: json["poster_path"],
-    mediaType: mediaTypeValues.map[json["media_type"]]!,
-    adult: json["adult"],
-    originalLanguage: json["original_language"],
-    genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     popularity: json["popularity"]?.toDouble(),
+    posterPath: json["poster_path"],
     releaseDate: DateTime.parse(json["release_date"]),
+    title: json["title"],
     video: json["video"],
     voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"],
   );
 
   Map<String, dynamic> toJson() => {
+    "adult": adult,
     "backdrop_path": backdropPath,
+    "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "id": id,
-    "title": title,
+    "original_language": originalLanguageValues.reverse[originalLanguage],
     "original_title": originalTitle,
     "overview": overview,
-    "poster_path": posterPath,
-    "media_type": mediaTypeValues.reverse[mediaType],
-    "adult": adult,
-    "original_language": originalLanguage,
-    "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "popularity": popularity,
+    "poster_path": posterPath,
     "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "title": title,
     "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
 }
 
-enum MediaType {
-  MOVIE
+enum OriginalLanguage {
+  EN,
+  ES,
+  KO,
+  XX
 }
 
-final mediaTypeValues = EnumValues({
-  "movie": MediaType.MOVIE
+final originalLanguageValues = EnumValues({
+  "en": OriginalLanguage.EN,
+  "es": OriginalLanguage.ES,
+  "ko": OriginalLanguage.KO,
+  "xx": OriginalLanguage.XX
 });
 
 class EnumValues<T> {

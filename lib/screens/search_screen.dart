@@ -64,6 +64,8 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: (value) {
                 if (value.isNotEmpty) {
                   search(searchController.text);
+                } else{
+                  searchModel = null;
                 }
               },
             ),
@@ -72,7 +74,13 @@ class _SearchScreenState extends State<SearchScreen> {
                     future: popularMovies,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return SizedBox(
+                          height: MediaQuery.of(context).size.height,  // Ensure full height
+                          width: MediaQuery.of(context).size.width,    // Ensure full width
+                          child: const Center(
+                            child: CircularProgressIndicator(color: Colors.red,),
+                          ),
+                        );
                       } else if (snapshot.hasError) {
                         return Center(child: Text('Error: ${snapshot.error}'));
                       } else if (snapshot.hasData) {

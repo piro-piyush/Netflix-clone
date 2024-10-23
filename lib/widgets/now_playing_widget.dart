@@ -4,25 +4,29 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/screens/movie_details_screen.dart';
 
 import '../common/utils.dart';
-import '../models/upcoming_movie_model.dart';
+import '../models/now_playing_model.dart';
 
-class MovieCardWidget extends StatelessWidget {
-  final Future<UpcomingMovieModel> future;
-
+class NowPlayingWidget extends StatelessWidget {
+  final Future<NowPlayingModel> future;
   final String headLineText;
-  const MovieCardWidget({
-    super.key,
+
+  const NowPlayingWidget({super.key,
     required this.future,
-    required this.headLineText,
-  });
+    required this.headLineText,});
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<UpcomingMovieModel>(
+    return FutureBuilder<NowPlayingModel>(
         future: future,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return const Center(child: CircularProgressIndicator());
+            return SizedBox(
+              height: MediaQuery.of(context).size.height,  // Ensure full height
+              width: MediaQuery.of(context).size.width,    // Ensure full width
+              child: const Center(
+                child: CircularProgressIndicator(color: Colors.red,),
+              ),
+            );
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           } else if (snapshot.hasData) {
