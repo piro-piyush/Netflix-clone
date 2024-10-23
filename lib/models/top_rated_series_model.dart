@@ -1,23 +1,27 @@
+// To parse this JSON data, do
+//
+//     final topRatedMoviesModel = topRatedMoviesModelFromJson(jsonString);
+
 import 'dart:convert';
 
-TopRatedSeriesModel topRatedSeriesModelFromJson(String str) => TopRatedSeriesModel.fromJson(json.decode(str));
+TopRatedMoviesModel topRatedMoviesModelFromJson(String str) => TopRatedMoviesModel.fromJson(json.decode(str));
 
-String topRatedSeriesModelToJson(TopRatedSeriesModel data) => json.encode(data.toJson());
+String topRatedMoviesModelToJson(TopRatedMoviesModel data) => json.encode(data.toJson());
 
-class TopRatedSeriesModel {
+class TopRatedMoviesModel {
   int page;
   List<Result> results;
   int totalPages;
   int totalResults;
 
-  TopRatedSeriesModel({
+  TopRatedMoviesModel({
     required this.page,
     required this.results,
     required this.totalPages,
     required this.totalResults,
   });
 
-  factory TopRatedSeriesModel.fromJson(Map<String, dynamic> json) => TopRatedSeriesModel(
+  factory TopRatedMoviesModel.fromJson(Map<String, dynamic> json) => TopRatedMoviesModel(
     page: json["page"],
     results: List<Result>.from(json["results"].map((x) => Result.fromJson(x))),
     totalPages: json["total_pages"],
@@ -37,14 +41,14 @@ class Result {
   String backdropPath;
   List<int> genreIds;
   int id;
-  List<OriginCountry> originCountry;
-  OriginalLanguage originalLanguage;
-  String originalName;
+  String originalLanguage;
+  String originalTitle;
   String overview;
   double popularity;
   String posterPath;
-  DateTime firstAirDate;
-  String name;
+  DateTime releaseDate;
+  String title;
+  bool video;
   double voteAverage;
   int voteCount;
 
@@ -53,14 +57,14 @@ class Result {
     required this.backdropPath,
     required this.genreIds,
     required this.id,
-    required this.originCountry,
     required this.originalLanguage,
-    required this.originalName,
+    required this.originalTitle,
     required this.overview,
     required this.popularity,
     required this.posterPath,
-    required this.firstAirDate,
-    required this.name,
+    required this.releaseDate,
+    required this.title,
+    required this.video,
     required this.voteAverage,
     required this.voteCount,
   });
@@ -70,14 +74,14 @@ class Result {
     backdropPath: json["backdrop_path"],
     genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
     id: json["id"],
-    originCountry: List<OriginCountry>.from(json["origin_country"].map((x) => originCountryValues.map[x]!)),
-    originalLanguage: originalLanguageValues.map[json["original_language"]]!,
-    originalName: json["original_name"],
+    originalLanguage: json["original_language"],
+    originalTitle: json["original_title"],
     overview: json["overview"],
     popularity: json["popularity"]?.toDouble(),
     posterPath: json["poster_path"],
-    firstAirDate: DateTime.parse(json["first_air_date"]),
-    name: json["name"],
+    releaseDate: DateTime.parse(json["release_date"]),
+    title: json["title"],
+    video: json["video"],
     voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"],
   );
@@ -87,53 +91,15 @@ class Result {
     "backdrop_path": backdropPath,
     "genre_ids": List<dynamic>.from(genreIds.map((x) => x)),
     "id": id,
-    "origin_country": List<dynamic>.from(originCountry.map((x) => originCountryValues.reverse[x])),
-    "original_language": originalLanguageValues.reverse[originalLanguage],
-    "original_name": originalName,
+    "original_language": originalLanguage,
+    "original_title": originalTitle,
     "overview": overview,
     "popularity": popularity,
     "poster_path": posterPath,
-    "first_air_date": "${firstAirDate.year.toString().padLeft(4, '0')}-${firstAirDate.month.toString().padLeft(2, '0')}-${firstAirDate.day.toString().padLeft(2, '0')}",
-    "name": name,
+    "release_date": "${releaseDate.year.toString().padLeft(4, '0')}-${releaseDate.month.toString().padLeft(2, '0')}-${releaseDate.day.toString().padLeft(2, '0')}",
+    "title": title,
+    "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
   };
-}
-
-enum OriginCountry {
-  CA,
-  JP,
-  KR,
-  US
-}
-
-final originCountryValues = EnumValues({
-  "CA": OriginCountry.CA,
-  "JP": OriginCountry.JP,
-  "KR": OriginCountry.KR,
-  "US": OriginCountry.US
-});
-
-enum OriginalLanguage {
-  EN,
-  JA,
-  KO
-}
-
-final originalLanguageValues = EnumValues({
-  "en": OriginalLanguage.EN,
-  "ja": OriginalLanguage.JA,
-  "ko": OriginalLanguage.KO
-});
-
-class EnumValues<T> {
-  Map<String, T> map;
-  late Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    reverseMap = map.map((k, v) => MapEntry(v, k));
-    return reverseMap;
-  }
 }

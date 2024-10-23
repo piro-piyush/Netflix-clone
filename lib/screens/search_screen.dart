@@ -19,7 +19,7 @@ class _SearchScreenState extends State<SearchScreen> {
   TextEditingController searchController = TextEditingController();
   ApiServices apiServices = ApiServices();
   SearchedMovieModel? searchModel;
-  late Future<TvRecommendationModel> popularMovies;
+  late Future<MovieRecommendationModel> popularMovies;
 
   void search(String query) {
     apiServices.getSearchedMovie(query).then((results) {
@@ -68,7 +68,7 @@ class _SearchScreenState extends State<SearchScreen> {
               },
             ),
             searchController.text.isEmpty
-                ? FutureBuilder<TvRecommendationModel>(
+                ? FutureBuilder<MovieRecommendationModel>(
                     future: popularMovies,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
@@ -129,7 +129,7 @@ class _SearchScreenState extends State<SearchScreen> {
                                               SizedBox(
                                                   width: 260,
                                                   child: Text(
-                                                    data[index].name,
+                                                    data[index].title,
                                                     maxLines: 2,
                                                     overflow:
                                                         TextOverflow.ellipsis,

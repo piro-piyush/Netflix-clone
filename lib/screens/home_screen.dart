@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ApiServices apiServices = ApiServices();
   late Future<UpcomingMovieModel> upcomingFuture;
   late Future<UpcomingMovieModel> nowPlayingFuture;
-  late Future<TopRatedSeriesModel> topRatedSeries;
+  late Future<TopRatedMoviesModel> topRatedSeries;
 
   @override
   void initState() {

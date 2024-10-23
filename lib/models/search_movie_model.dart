@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-SearchedMovieModel searchedMovieModalFromJson(String str) => SearchedMovieModel.fromJson(json.decode(str));
+SearchedMovieModel searchedMovieModelFromJson(String str) => SearchedMovieModel.fromJson(json.decode(str));
 
-String searchedMovieModalToJson(SearchedMovieModel data) => json.encode(data.toJson());
+String searchedMovieModelToJson(SearchedMovieModel data) => json.encode(data.toJson());
 
 class SearchedMovieModel {
   int page;

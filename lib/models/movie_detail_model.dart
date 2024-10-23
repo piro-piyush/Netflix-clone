@@ -11,7 +11,7 @@ String movieDetailModelToJson(MovieDetailModel data) => json.encode(data.toJson(
 class MovieDetailModel {
   bool adult;
   String backdropPath;
-  dynamic belongsToCollection;
+  BelongsToCollection belongsToCollection;
   int budget;
   List<Genre> genres;
   String homepage;
@@ -33,7 +33,7 @@ class MovieDetailModel {
   String tagline;
   String title;
   bool video;
-  int voteAverage;
+  double voteAverage;
   int voteCount;
 
   MovieDetailModel({
@@ -68,7 +68,7 @@ class MovieDetailModel {
   factory MovieDetailModel.fromJson(Map<String, dynamic> json) => MovieDetailModel(
     adult: json["adult"],
     backdropPath: json["backdrop_path"],
-    belongsToCollection: json["belongs_to_collection"],
+    belongsToCollection: BelongsToCollection.fromJson(json["belongs_to_collection"]),
     budget: json["budget"],
     genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
     homepage: json["homepage"],
@@ -90,14 +90,14 @@ class MovieDetailModel {
     tagline: json["tagline"],
     title: json["title"],
     video: json["video"],
-    voteAverage: json["vote_average"],
+    voteAverage: json["vote_average"]?.toDouble(),
     voteCount: json["vote_count"],
   );
 
   Map<String, dynamic> toJson() => {
     "adult": adult,
     "backdrop_path": backdropPath,
-    "belongs_to_collection": belongsToCollection,
+    "belongs_to_collection": belongsToCollection.toJson(),
     "budget": budget,
     "genres": List<dynamic>.from(genres.map((x) => x.toJson())),
     "homepage": homepage,
@@ -121,6 +121,34 @@ class MovieDetailModel {
     "video": video,
     "vote_average": voteAverage,
     "vote_count": voteCount,
+  };
+}
+
+class BelongsToCollection {
+  int id;
+  String name;
+  String posterPath;
+  String backdropPath;
+
+  BelongsToCollection({
+    required this.id,
+    required this.name,
+    required this.posterPath,
+    required this.backdropPath,
+  });
+
+  factory BelongsToCollection.fromJson(Map<String, dynamic> json) => BelongsToCollection(
+    id: json["id"],
+    name: json["name"],
+    posterPath: json["poster_path"],
+    backdropPath: json["backdrop_path"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "id": id,
+    "name": name,
+    "poster_path": posterPath,
+    "backdrop_path": backdropPath,
   };
 }
 

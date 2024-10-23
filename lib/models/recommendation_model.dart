@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final recommendationModel = recommendationModelFromJson(jsonString);
-
 import 'dart:convert';
 
 RecommendationModel recommendationModelFromJson(String str) => RecommendationModel.fromJson(json.decode(str));

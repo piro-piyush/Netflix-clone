@@ -7,7 +7,7 @@ import '../models/top_rated_series_model.dart';
 import '../screens/movie_details_screen.dart';
 
 class CustomCorousalSlider extends StatelessWidget {
-  final TopRatedSeriesModel data;
+  final TopRatedMoviesModel data;
   const CustomCorousalSlider({super.key, required this.data});
 
   @override
@@ -38,7 +38,7 @@ class CustomCorousalSlider extends StatelessWidget {
                 children: [
                   CachedNetworkImage(imageUrl: "$imageUrl$url",),
                   SizedBox(height: 20,),
-                  Text(data.results[index].name)
+                  Text(data.results[index].title)
                 ],
               ),
             ));

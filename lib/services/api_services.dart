@@ -42,15 +42,15 @@ class ApiServices {
     throw Exception("Failed to load Now Playing movies");
   }
 
-  Future<TopRatedSeriesModel> getTopRatedSeries() async {
-    endPoint = "tv/top_rated";
+  Future<TopRatedMoviesModel> getTopRatedSeries() async {
+    endPoint = "movie/top_rated";
     final url = "$baseUrl$endPoint$key";
 
     final response  = await http.get(Uri.parse(url));
     if(response.statusCode == 200){
       log("Success");
       log("Fetching Now Playing Movies: ${response.statusCode} - ${response.body}");
-      return TopRatedSeriesModel.fromJson(jsonDecode(response.body));
+      return TopRatedMoviesModel.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load Top rated series");
   }
@@ -83,8 +83,8 @@ class ApiServices {
     }
 }
 
-  Future<TvRecommendationModel> getTvRecommendationModel() async {
-    endPoint = "tv/popular";
+  Future<MovieRecommendationModel> getTvRecommendationModel() async {
+    endPoint = "movie/popular";
     final url = "$baseUrl$endPoint";
 
     final response = await http.get(
@@ -95,7 +95,7 @@ class ApiServices {
     if(response.statusCode == 200){
       log("Success");
       log("Fetching Recommended Tv movies : ${response.statusCode} - ${response.body}");
-      return TvRecommendationModel.fromJson(jsonDecode(response.body));
+      return MovieRecommendationModel.fromJson(jsonDecode(response.body));
     }
     throw Exception("Failed to load popular movies");
   }
