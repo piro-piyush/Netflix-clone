@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:netflix_clone/common/utils.dart';
 import 'package:netflix_clone/models/top_rated_series_model.dart';
 import 'package:netflix_clone/models/upcoming_movie_model.dart';
+import 'package:netflix_clone/screens/search_screen.dart';
 import 'package:netflix_clone/services/api_services.dart';
 import 'package:netflix_clone/widgets/now_playing_widget.dart';
 import 'package:netflix_clone/widgets/upcoming_movie_card_widget.dart';
@@ -42,7 +43,9 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             InkWell(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>SearchScreen()));
+              },
               child: Icon(
                 Icons.search,
                 size: 30,
@@ -85,6 +88,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   return const SizedBox.shrink();
                 }
               }),
+              const SizedBox(
+                height: 20,
+              ),
               SizedBox(
                 height: 220,
                 child: NowPlayingWidget(future: nowPlayingFuture, headLineText: "Now Playing",)

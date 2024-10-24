@@ -59,7 +59,7 @@ class NowPlayingWidget extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => MovieDetailsScreen(
-                                      movieId: data[index].id,
+                                      movieId: data[index].id!,
                                     ),
                                   ),
                                 );
