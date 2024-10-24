@@ -16,7 +16,7 @@ class CustomCorousalSlider extends StatelessWidget {
 
     return SizedBox(
       width: size.width,
-      height: (size.height * 0.33<300)? 300 : size.height * 0.33,
+      height: (size.height * 0.30<300)? 400 : size.height * 0.30,
       child: CarouselSlider.builder(itemCount: data.results.length,itemBuilder: (BuildContext context,int index,int realIndex){
 
         var url = data.results[index].backdropPath.toString();
@@ -38,7 +38,7 @@ class CustomCorousalSlider extends StatelessWidget {
                 children: [
                   CachedNetworkImage(imageUrl: "$imageUrl$url",),
                   SizedBox(height: 20,),
-                  Text(data.results[index].title)
+                  Text(data.results[index].title,maxLines: 1,overflow: TextOverflow.ellipsis,)
                 ],
               ),
             ));
