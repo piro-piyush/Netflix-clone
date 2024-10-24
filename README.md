@@ -88,7 +88,7 @@ Project Structure 📂
 
 Screenshots 📸
 <p align="center"> <img src="demo/first.png" alt="Home Screen" width="250"/>
-  <img src="demo/second.png" alt="Search Screen" width="250"/> <img src="demo/fifth.png" alt="Movie Details Screen" width="250"/> </p>
+  <img src="demo/two.png" alt="Search Screen" width="250"/> <img src="demo/three.png" alt="Movie Details Screen" width="250"/> </p>
   
 Dependencies 🛠️
 http: For making API requests.
