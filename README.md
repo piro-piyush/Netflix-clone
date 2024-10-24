@@ -1,130 +1,127 @@
+# Movie Search App 🎬
 
-# Netflix Clone
+A **Flutter** application that allows users to explore movies from different categories (Now Playing, Upcoming, Top Movies) and search for specific movies using the **TMDb API**. This project showcases a smooth movie search feature with no login required.
 
-A Netflix Clone built using **Flutter (or React, Vue, etc.)** and **Firebase (or other backend services)**, replicating core features like video browsing, user authentication, and media streaming.
-
-## Features
-
-- User authentication (Login/Signup)
-- Browse movies and TV shows
-- Search functionality
-- Movie details page
-- Video player for streaming content
-- Responsive UI for different screen sizes
-- Custom categories like Trending, Popular, etc.
-- Favorites/Watchlist feature
-- Secure video storage and streaming
-
-## Technologies Used
-
-- **Frontend**: Flutter (Dart), (or React, Vue, etc.)
-- **Backend**: Firebase (Firestore, Firebase Auth, Firebase Storage)
-- **API**: TMDB API (The Movie Database) for fetching movie data
-- **Other Tools**: 
-  - Cloud Firestore for managing data
-  - Firebase Authentication for user accounts
-  - Firebase Storage for managing videos and images
-
-## Getting Started
+## Features 🚀
+- **Home Screen**:
+  - Custom Carousel Slider showcasing **Top Movies**.
+  - Display of **Now Playing** and **Upcoming Movies**.
+- **Search Functionality**:
+  - If no input is provided, popular movies are displayed.
+  - As you type, the app fetches and displays movie results dynamically based on your input.
+- **Movie Details**:
+  - Get detailed information about any movie, including its poster, description, and other key information.
+  
+## Getting Started 🔧
 
 ### Prerequisites
+- **Flutter SDK**: Ensure you have [Flutter](https://flutter.dev/docs/get-started/install) installed.
+- **TMDb API Key**: Sign up and get an API key and Authorization token from [TMDb Developer Portal](https://developer.themoviedb.org/).
 
-Ensure that you have the following installed:
+### Installing
 
-- Flutter SDK (if using Flutter) / Node.js (if using React)
-- Android Studio/Xcode for emulators (if using Flutter)
-- Firebase account and setup
-
-### Installation
-
-1. Clone the repository:
-   \`\`\`bash
-   git clone https://github.com/yourusername/netflix-clone.git
-   \`\`\`
-2. Navigate to the project directory:
-   \`\`\`bash
-   cd netflix-clone
-   \`\`\`
-
-3. Install the necessary dependencies:
-
-   For **Flutter**:
-   \`\`\`bash
-   flutter pub get
-   \`\`\`
-
-   For **React**:
-   \`\`\`bash
-   npm install
-   \`\`\`
-
-4. Setup Firebase:
-
-   - Create a Firebase project in the [Firebase Console](https://console.firebase.google.com/).
-   - Add your Android/iOS app and download the `google-services.json` or `GoogleService-Info.plist` file and place them in the respective project directories.
-
-5. Setup API:
-
-   - Get an API key from [TMDB API](https://www.themoviedb.org/documentation/api).
-   - Add your TMDB API key to the `.env` file or directly in your config files.
-
-6. Run the project:
-
-   For **Flutter**:
-   \`\`\`bash
-   flutter run
-   \`\`\`
-
-   For **React**:
-   \`\`\`bash
-   npm start
-   \`\`\`
-
-## Screenshots
-
-Include screenshots or GIFs of your project here.
-
-## Project Structure
-
-Explain the structure of your project:
+1. **Clone the repository**:
 
 ```bash
-├── lib/
-│   ├── screens/           # UI Screens like Home, Movie Details, etc.
-│   ├── widgets/           # Custom UI components
-│   ├── services/          # API calls, Firebase services, etc.
-│   ├── models/            # Data models (Movies, Users)
-│   ├── utils/             # Utility classes and constants
-│   └── main.dart          # Main entry point of the app
+git clone https://github.com/piro-piyush/Netflix-clone
+cd movie-search-app
 ```
 
-## Firebase Configuration
+Install dependencies:
+```bash
+flutter pub get
+```
 
-To configure Firebase for this project:
+Setup TMDb API Key:
+Get your TMDb API Key and Authorization Token from TMDb Developer Portal.
+Create a .env file at the root of the project and add your TMDb Authorization Token like this:
+env
+Copy code
+TMDB_AUTH_TOKEN=your_tmdb_authorization_token
+Alternatively, you can directly update your token in the API service file if you prefer hardcoding it.
 
-1. Add a new Firebase project in the Firebase Console.
-2. Add Android/iOS app to the project.
-3. Download `google-services.json` (for Android) or `GoogleService-Info.plist` (for iOS) and add them to your project.
-4. Enable Authentication (Email/Password) and Firestore in Firebase Console.
+Run the app:
+```bash
+flutter run
+```
 
-## API Configuration
+API Integration 🔑
+This app uses the TMDb API to fetch movie data.
 
-To use the TMDB API:
+Endpoints Used:
+Now Playing: Fetch movies that are currently playing in theaters.
+Upcoming Movies: Get a list of upcoming movies.
+Search Movies: Search for specific movies based on the input text.
+Movie Details: Get more detailed information about individual movies.
+Authorization
+Make sure to include the Authorization Bearer Token in the headers for API requests:
 
-1. Get a free API key from [The Movie Database](https://www.themoviedb.org/documentation/api).
-2. Add the API key in your project’s environment file.
+```dart
+final response = await http.get(
+  Uri.parse(url),
+  headers: {
+    'Authorization': 'Bearer YOUR_AUTH_TOKEN',
+  },
+);
 
-## Contributing
+Project Structure 📂
+```bash
+├── lib
+│   ├── models
+│   │   ├── movie_model.dart        // Model for Movie data
+│   │   └── movie_detail_model.dart // Model for Movie Detail data
+│   ├── services
+│   │   └── api_services.dart       // API calls to TMDb
+│   ├── screens
+│   │   ├── home_screen.dart        // Home screen with carousel and movie sections
+│   │   └── movie_details_screen.dart // Screen to display movie details
+│   ├── widgets
+│   │   ├── movie_card_widget.dart  // Widget for displaying individual movie cards
+│   │   └── carousel_slider_widget.dart // Custom carousel slider for top movies
+│   └── main.dart                   // Main entry point
+├── assets
+│   ├── images
+│   │   └── netflix.png             // Default placeholder image
+├── pubspec.yaml                    // Dependencies and assets
+└── README.md                       // You are here
+```
 
-Contributions are welcome! Here's how you can get involved:
+Screenshots 📸
+<p align="center"> <img src="demo/first.png" alt="Home Screen" width="250"/>
+  <img src="demo/second.png" alt="Search Screen" width="250"/> <img src="demo/fifth.png" alt="Movie Details Screen" width="250"/> </p>
+  
+Dependencies 🛠️
+http: For making API requests.
+carousel_slider: For creating the custom carousel on the home screen.
+flutter_dotenv: To manage environment variables for storing API tokens.
+Install dependencies with:
+```bash
+flutter pub get
+```
 
-1. Fork the project.
-2. Create a new branch (`git checkout -b feature-branch`).
-3. Make your changes.
-4. Commit your changes (`git commit -m 'Add new feature'`).
-5. Push to the branch (`git push origin feature-branch`).
-6. Create a pull request.
+How It Works ⚙️
+Home Screen:
 
-## License
+Displays Top Movies in a custom carousel slider.
+Shows Now Playing and Upcoming Movies in separate horizontal scrolling lists.
+Search:
 
-This project is licensed under the MIT License.
+If you don't type anything, it displays Popular Movies.
+When you start typing, the app fetches results dynamically and displays matching movies.
+Movie Details:
+
+Tap on any movie to see detailed information like the poster, overview, and more.
+Getting the API Key 🔑
+Sign up on TMDb.
+Go to your account settings and navigate to the API section.
+Generate your API Key and Authorization Bearer Token.
+Use this token in your requests to access movie data.
+Contribution 🛠️
+Feel free to contribute! Open issues, send PRs, or even just star the repository 😃
+
+License 📄
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+Happy Coding! 🎉
+
+This README provides clear steps for getting started, highlights features, and includes essential project structure and API integration details.
