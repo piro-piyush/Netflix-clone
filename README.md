@@ -126,3 +126,4 @@ Happy Coding! 🎉
 
 This README provides clear steps for getting started, highlights features, and includes essential project structure and API integration details.
 
+
