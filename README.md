@@ -124,4 +124,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 Happy Coding! 🎉
 
-This README provides clear steps for getting started, highlights features, and includes essential p
+This README provides clear steps for getting started, highlights features, and includes essential project structure and API integration details.
