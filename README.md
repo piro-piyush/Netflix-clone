@@ -23,13 +23,15 @@ A **Flutter** application that allows users to explore movies from different cat
 1. **Clone the repository**:
 
 ```bash
-git clone https://github.com/your-username/movie-search-app.git
+git clone https://github.com/piro-piyush/Netflix-clone
 cd movie-search-app
+```
 
 Install dependencies:
-bash
-Copy code
+```bash
 flutter pub get
+```
+
 Setup TMDb API Key:
 Get your TMDb API Key and Authorization Token from TMDb Developer Portal.
 Create a .env file at the root of the project and add your TMDb Authorization Token like this:
@@ -39,9 +41,10 @@ TMDB_AUTH_TOKEN=your_tmdb_authorization_token
 Alternatively, you can directly update your token in the API service file if you prefer hardcoding it.
 
 Run the app:
-bash
-Copy code
+```bash
 flutter run
+```
+
 API Integration 🔑
 This app uses the TMDb API to fetch movie data.
 
@@ -53,17 +56,16 @@ Movie Details: Get more detailed information about individual movies.
 Authorization
 Make sure to include the Authorization Bearer Token in the headers for API requests:
 
-dart
-Copy code
+```dart
 final response = await http.get(
   Uri.parse(url),
   headers: {
     'Authorization': 'Bearer YOUR_AUTH_TOKEN',
   },
 );
+
 Project Structure 📂
-less
-Copy code
+```bash
 ├── lib
 │   ├── models
 │   │   ├── movie_model.dart        // Model for Movie data
@@ -82,17 +84,21 @@ Copy code
 │   │   └── netflix.png             // Default placeholder image
 ├── pubspec.yaml                    // Dependencies and assets
 └── README.md                       // You are here
+```
+
 Screenshots 📸
-<p align="center"> <img src="screenshots/home_screen.png" alt="Home Screen" width="250"/> <img src="screenshots/search_screen.png" alt="Search Screen" width="250"/> <img src="screenshots/movie_details_screen.png" alt="Movie Details Screen" width="250"/> </p>
+<p align="center"> <img src="demo/first.png" alt="Home Screen" width="250"/>
+  <img src="demo/second.png" alt="Search Screen" width="250"/> <img src="demo/fifth.png" alt="Movie Details Screen" width="250"/> </p>
+  
 Dependencies 🛠️
 http: For making API requests.
 carousel_slider: For creating the custom carousel on the home screen.
 flutter_dotenv: To manage environment variables for storing API tokens.
 Install dependencies with:
-
-bash
-Copy code
+```bash
 flutter pub get
+```
+
 How It Works ⚙️
 Home Screen:
 
@@ -117,13 +123,5 @@ License 📄
 This project is licensed under the MIT License - see the LICENSE file for details.
 
 Happy Coding! 🎉
-
-bash
-Copy code
-
-### How to Use this README:
-- Replace the **GitHub URL** in the clone command.
-- Add screenshots if available (put them in a `/screenshots` folder).
-- Ensure any additional details specific to your project, such as widgets or functions, are accurate.
 
 This README provides clear steps for getting started, highlights features, and includes essential p
