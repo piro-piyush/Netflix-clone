@@ -115,18 +115,18 @@ final response = await http.get(
 
 ## Screenshots 📸
 <p align="center">
-    <strong>Home Screen</strong><br>
-    <img src="demo/first.png" alt="Home Screen" width="250"/>
-    <img src="demo/two.png" alt="Home Screen" width="250"/><br><br>
-    <strong>Search Screen</strong><br>
-    <img src="demo/three.png" alt="Search Screen" width="250"/>
-    <img src="demo/four.png" alt="Search Screen" width="250"/><br><br>
-    <strong>Details Screen</strong><br>
-    <img src="demo/five.png" alt="Movie Details Screen" width="250"/><br><br>
-    <strong>New & Hot</strong><br>
-    <img src="demo/six.png" alt="New & Hot Screen" width="250"/><br><br>
-    <strong>App Demo</strong><br>
-    <video src="demo/recording.webm" width="320" height="240" controls></video>
+        Home Screen
+        <img src="demo/first.png" alt="Home Screen" width="250"/>
+        <img src="demo/two.png" alt="Home Screen" width="250"/>
+        Search screen
+        <img src="demo/three.png" alt="Search Screen" width="250"/>
+        <img src="demo/four.png" alt="Search Screen" width="250"/>
+        Details screen
+        <img src="demo/five.png" alt="Movie Details Screen" width="250"/>
+        New & Hot
+        <img src="demo/five.png" alt="New & Hot Screen" width="250"/>
+        Demo
+        <img src="demo/demo.gif" alt="Demo of app" width="250"/>
 </p>
 
 ## Dependencies 🛠️
