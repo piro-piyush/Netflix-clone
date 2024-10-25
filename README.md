@@ -32,52 +32,67 @@ Install dependencies:
 flutter pub get
 ```
 
-Setup TMDb API Key:
-Get your TMDb API Key and Authorization Token from TMDb Developer Portal.
-Create a .env file at the root of the project and add your TMDb Authorization Token like this:
-env
-Copy code
-TMDB_AUTH_TOKEN=your_tmdb_authorization_token
-Alternatively, you can directly update your token in the API service file if you prefer hardcoding it.
+## Setup TMDb API Key:
+  Get your TMDb API Key and Authorization Token from TMDb Developer Portal.
+  Create a .env file at the root of the project and add your TMDb Authorization Token like this:
+  env
+  ```bash
+  TMDB_AUTH_TOKEN=your_tmdb_authorization_token
+  ```
+  Alternatively, you can directly update your token in the API service file if you prefer hardcoding it.
 
-Run the app:
-```bash
-flutter run
-```
+## Run the app:
+  ```bash
+  flutter run
+  ```
 
-API Integration 🔑
+## API Integration 🔑
 This app uses the TMDb API to fetch movie data.
 
-Endpoints Used:
-Now Playing: Fetch movies that are currently playing in theaters.
-Upcoming Movies: Get a list of upcoming movies.
-Search Movies: Search for specific movies based on the input text.
-Movie Details: Get more detailed information about individual movies.
-Authorization
+### Endpoints Used:
+#### Now Playing: Fetch movies that are currently playing in theaters.
+#### Upcoming Movies: Get a list of upcoming movies.
+#### Search Movies: Search for specific movies based on the input text.
+#### Movie Details: Get more detailed information about individual movies.
+
+###Authorization
 Make sure to include the Authorization Bearer Token in the headers for API requests:
 
-```dart
-final response = await http.get(
-  Uri.parse(url),
-  headers: {
-    'Authorization': 'Bearer YOUR_AUTH_TOKEN',
-  },
-);
+  ```dart
+  final response = await http.get(
+    Uri.parse(url),
+    headers: {
+      'Authorization': 'Bearer YOUR_AUTH_TOKEN',
+    },
+  );
 
 Project Structure 📂
 ```bash
 ├── lib
+|   ├── common
+|   |   └── utils.dart 
 │   ├── models
-│   │   ├── movie_model.dart        // Model for Movie data
-│   │   └── movie_detail_model.dart // Model for Movie Detail data
+|   |   ├── movie_detail_model.dart
+|   |   ├── movue_recommendation_model.dart
+|   |   ├── now_playing_model.dart
+|   |   ├── recommendation_model.dart
+|   |   ├── search_movie_model.dart
+|   |   ├── top_rated_series_model.dart
+│   │   └── upcoming_movie_model.dart
+|   ├── screens
+│   │   ├── home_screen.dart
+│   │   ├── more_screen.dart
+│   │   ├── movie_details_screen.dart
+│   │   ├── search_screen.dart          // Home screen with carousel and movie sections
+│   │   └── splash_screen.dart  // Model for Movie data
 │   ├── services
-│   │   └── api_services.dart       // API calls to TMDb
-│   ├── screens
-│   │   ├── home_screen.dart        // Home screen with carousel and movie sections
-│   │   └── movie_details_screen.dart // Screen to display movie details
+│   │   └── api_services.dart     
 │   ├── widgets
-│   │   ├── movie_card_widget.dart  // Widget for displaying individual movie cards
-│   │   └── carousel_slider_widget.dart // Custom carousel slider for top movies
+│   │   ├── bottom_nav_bar.dart
+│   │   ├── coming_soon_movie_widget.dart
+│   │   ├── custom_carousel.dart 
+│   │   ├── now_playing_widget.dart
+│   │   └── upcoming_movie_card_widget.dart 
 │   └── main.dart                   // Main entry point
 ├── assets
 │   ├── images
